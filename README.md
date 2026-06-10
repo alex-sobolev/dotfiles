@@ -90,6 +90,9 @@ Or grab a build directly from <https://ghostty.org/download> and install it like
 any other macOS app. Either way, the `ghostty/` config in this repo applies once
 `./install.sh` has symlinked it into `~/.config/ghostty`.
 
+The font it uses (`JetBrainsMono Nerd Font`) **is** in the Brewfile
+(`cask "font-jetbrains-mono-nerd-font"`), so `brew bundle` installs it for you.
+
 ## LSPs / tools (install once per machine)
 
 Mason packages aren't part of the repo (they live in nvim's data dir), so install

@@ -19,6 +19,9 @@ brew "luarocks"      # lazy.nvim luarocks support (flagged by :checkhealth lazy)
 brew "ripgrep"       # fzf-lua live grep (rg).
 brew "fd"            # fzf-lua file finder.
 
+# --- fonts ---
+cask "font-jetbrains-mono-nerd-font"   # ghostty `font-family = JetBrainsMono Nerd Font`
+
 # NOT managed by brew on purpose — use your own version manager (see README):
 #   node   -> nvm (JS-based LSP servers need `node` on PATH)
 #   rust   -> rustup.rs installer (rustaceanvim + codelldb; provides rust-analyzer)
