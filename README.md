@@ -77,6 +77,19 @@ xcode-select --install
 > manager (node/rust/python/…), document it in *this* section instead — never
 > pin those in the Brewfile.
 
+### Terminal: Ghostty (install it yourself)
+
+Ghostty is the terminal app these configs target, but it's deliberately left out
+of `brew bundle` so you can install it however you prefer:
+
+```sh
+brew install --cask ghostty        # via Homebrew
+```
+
+Or grab a build directly from <https://ghostty.org/download> and install it like
+any other macOS app. Either way, the `ghostty/` config in this repo applies once
+`./install.sh` has symlinked it into `~/.config/ghostty`.
+
 ## LSPs / tools (install once per machine)
 
 Mason packages aren't part of the repo (they live in nvim's data dir), so install

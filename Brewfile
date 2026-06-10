@@ -5,10 +5,12 @@
 # time. They are NOT managed by Mason/lazy and won't be installed by cloning
 # the repo — a fresh machine needs them or things fail at startup.
 
-# --- editors / terminal ---
+# --- editors ---
 brew "neovim"
 brew "helix"
-cask "ghostty"
+
+# Ghostty (the terminal app itself) is intentionally NOT installed here — install
+# it yourself, via brew or a direct download. See README "Terminal: Ghostty".
 
 # --- nvim runtime deps ---
 brew "tree-sitter"   # REQUIRED by nvim-treesitter `main` branch: parser install
