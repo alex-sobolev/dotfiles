@@ -13,11 +13,13 @@ brew "helix"
 # it yourself, via brew or a direct download. See README "Terminal: Ghostty".
 
 # --- nvim runtime deps ---
-brew "tree-sitter"   # REQUIRED by nvim-treesitter `main` branch: parser install
-                     # (treesitter.install / :TSUpdate) shells out to this CLI.
-brew "luarocks"      # lazy.nvim luarocks support (flagged by :checkhealth lazy).
-brew "ripgrep"       # fzf-lua live grep (rg).
-brew "fd"            # fzf-lua file finder.
+brew "tree-sitter-cli"  # REQUIRED by nvim-treesitter `main` branch: parser install
+                        # (treesitter.install / :TSUpdate) shells out to this CLI.
+                        # NOTE: the `tree-sitter` formula is the library only (no
+                        # bin/) — `tree-sitter-cli` provides the actual CLI binary.
+brew "luarocks"         # lazy.nvim luarocks support (flagged by :checkhealth lazy).
+brew "ripgrep"          # fzf-lua live grep (rg).
+brew "fd"               # fzf-lua file finder.
 
 # --- fonts ---
 cask "font-jetbrains-mono-nerd-font"   # ghostty `font-family = JetBrainsMono Nerd Font`

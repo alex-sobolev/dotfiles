@@ -47,7 +47,7 @@ brew bundle --file ~/dev/dotfiles/Brewfile
 
 | Dependency      | Needed by                                                          |
 | --------------- | ------------------------------------------------------------------ |
-| `tree-sitter`   | **nvim-treesitter `main` branch** — parser install/`:TSUpdate` shells out to this CLI (hard requirement) |
+| `tree-sitter-cli` | **nvim-treesitter `main` branch** — parser install/`:TSUpdate` shells out to this CLI (hard requirement; the `tree-sitter` formula is the library only) |
 | `luarocks`      | `lazy.nvim` luarocks support (flagged by `:checkhealth lazy`)       |
 | `ripgrep`       | `fzf-lua` live grep                                                 |
 | `fd`            | `fzf-lua` file finder                                               |
