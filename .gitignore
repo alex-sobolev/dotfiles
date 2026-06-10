@@ -4,6 +4,10 @@
 *.swp
 *.swo
 
+# IDE project folders (auto-created when opening this repo — never commit)
+.idea/
+.vscode/
+
 # local Claude project data (not shared across machines)
 nvim/.claude/
 
