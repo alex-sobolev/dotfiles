@@ -1,0 +1,7 @@
+# Ghostty-only system dependencies.
+# Install with:  brew bundle --file ~/dev/dotfiles/Brewfile.ghostty
+
+# Ghostty (the terminal app itself) is intentionally NOT installed here — install
+# it yourself, via brew or a direct download. See README "Terminal: Ghostty".
+
+cask "font-jetbrains-mono-nerd-font"   # ghostty `font-family = JetBrainsMono Nerd Font`

@@ -14,8 +14,11 @@ needs them or nvim breaks at startup (parsers won't compile, grep/file pickers f
 ### Via brew (leaf CLI tools — no version manager of their own)
 
 ```sh
-brew bundle --file ~/dev/dotfiles/Brewfile
+brew bundle --file ~/dev/dotfiles/Brewfile.nvim
 ```
+
+(`Brewfile.nvim` holds the nvim-only deps; the root `Brewfile` aggregates all
+per-tool Brewfiles if you want everything.)
 
 | Dependency      | Needed by                                                          |
 | --------------- | ------------------------------------------------------------------ |
@@ -49,8 +52,8 @@ rustup component add rust-analyzer        # the rust-analyzer rustaceanvim uses
 xcode-select --install
 ```
 
-> If you add a plugin that pulls in a new **leaf** system binary, add it to the
-> `Brewfile` and the table above. If it needs a runtime that has its own version
+> If you add a plugin that pulls in a new **leaf** system binary, add it to
+> `Brewfile.nvim` and the table above. If it needs a runtime that has its own version
 > manager (node/rust/python/…), document it in *this* section instead — never
 > pin those in the Brewfile.
 
@@ -93,10 +96,10 @@ tool is on `PATH`. Install only the ones for languages you actually use.
 | -------------- | ---------------------- | ------ | -------------------------------------------- |
 | `luacheck`     | lua                    | Mason  | in the `:MasonInstall` line above            |
 | `stylua`       | lua                    | Mason  | in the `:MasonInstall` line above            |
-| `shellcheck`   | sh                     | brew   | `brew bundle` (in Brewfile)                  |
-| `shfmt`        | sh                     | brew   | `brew bundle` (in Brewfile)                  |
-| `hadolint`     | docker                 | brew   | `brew bundle` (in Brewfile)                  |
-| `clang-format` | c, cpp                 | brew   | `brew bundle` (in Brewfile)                  |
+| `shellcheck`   | sh                     | brew   | `brew bundle` (in Brewfile.nvim)             |
+| `shfmt`        | sh                     | brew   | `brew bundle` (in Brewfile.nvim)             |
+| `hadolint`     | docker                 | brew   | `brew bundle` (in Brewfile.nvim)             |
+| `clang-format` | c, cpp                 | brew   | `brew bundle` (in Brewfile.nvim)             |
 | `cpplint`      | c, cpp                 | uv     | `uv tool install cpplint`                    |
 | `ruff`         | python (lint + format) | uv     | `uv tool install ruff` — one binary, replaces flake8 + black |
 | `prettier_d`   | css/html/json/md/js/ts/svelte/vue | Mason | in the `:MasonInstall` line above        |
@@ -104,11 +107,11 @@ tool is on `PATH`. Install only the ones for languages you actually use.
 | `gofumpt`      | go                     | go     | `go install mvdan.cc/gofumpt@latest`         |
 | `go_revive`    | go                     | go     | `go install github.com/mgechev/revive@latest` |
 
-> The brew tools are in the Brewfile. The web tools (`prettierd`/`fixjson`, plus the
+> The brew tools are in `Brewfile.nvim`. The web tools (`prettierd`/`fixjson`, plus the
 > `eslint-lsp` server) go through **Mason** so they survive `nvm` Node-version switches — a global
 > `npm i -g` lives under the active Node version and vanishes the moment you install a
 > newer one (they still need *some* Node on `PATH` at runtime). The Python tools use
-> **`uv tool install`** (`uv` is in the Brewfile) — isolated per-tool, on `PATH`, fast.
+> **`uv tool install`** (`uv` is in `Brewfile.nvim`) — isolated per-tool, on `PATH`, fast.
 > `ruff` (Astral, Rust) is a single binary that replaces both flake8 (lint) and black
 > (format); `ruff_sort` is also available if you want import sorting. The go tools need
 > a Go toolchain on `PATH` (`brew install go` or the official installer), which `gopls`

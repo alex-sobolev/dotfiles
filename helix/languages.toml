@@ -11,6 +11,7 @@ bindingModeHints.enable = false  # `ref`/`mut` hints in patterns
 # ESLint via vscode-eslint-language-server (same engine as VSCode / our nvim setup).
 # It resolves each project's LOCAL eslint + flat config from node_modules automatically,
 # so it is monorepo/pnpm friendly. Install: npm i -g vscode-langservers-extracted
+# (full dependency list + install docs: helix.md in the repo root)
 #
 # Auto-fix on save: Helix has no "code actions on save", so we expose eslint's
 # `format = true` (LSP formatting == `eslint --fix`) and exclude "format" from the
