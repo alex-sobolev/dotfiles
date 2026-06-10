@@ -104,12 +104,13 @@ Mason packages aren't part of the repo (they live in nvim's data dir), so instal
 them in nvim after cloning. Open nvim and run:
 
 ```vim
-:MasonInstall lua-language-server pyright gopls json-lsp typescript-language-server bash-language-server clangd docker-language-server emmet-language-server yaml-language-server tailwindcss-language-server taplo efm luacheck stylua codelldb
+:MasonInstall lua-language-server pyright gopls json-lsp typescript-language-server bash-language-server clangd docker-language-server emmet-language-server yaml-language-server tailwindcss-language-server taplo efm luacheck stylua prettierd eslint_d fixjson codelldb
 ```
 
 This is the Mason package set for the servers enabled in `nvim/lua/servers/init.lua`,
-plus `codelldb` (Rust DAP) and the Mason-managed efm tools (`luacheck`, `stylua`).
-The remaining efm linters/formatters are **not** Mason-managed — see the next section.
+plus `codelldb` (Rust DAP) and the Mason-managed efm tools (`luacheck`, `stylua`,
+`prettierd`, `eslint_d`, `fixjson`). The remaining efm linters/formatters are **not**
+Mason-managed — see the next section.
 
 > Keep this list in sync whenever you add or remove a server in `servers/init.lua`.
 
@@ -131,16 +132,19 @@ tool is on `PATH`. Install only the ones for languages you actually use.
 | `cpplint`      | c, cpp                 | pip    | `pipx install cpplint`                       |
 | `flake8`       | python                 | pip    | `pipx install flake8`                        |
 | `black`        | python                 | pip    | `pipx install black`                         |
-| `prettier_d`   | css/html/json/md/js/ts/svelte/vue | npm | `npm i -g @fsouza/prettierd`           |
-| `eslint_d`     | js/ts/json/svelte/vue  | npm    | `npm i -g eslint_d`                          |
-| `fixjson`      | json                   | npm    | `npm i -g fixjson`                           |
+| `prettier_d`   | css/html/json/md/js/ts/svelte/vue | Mason | in the `:MasonInstall` line above        |
+| `eslint_d`     | js/ts/json/svelte/vue  | Mason  | in the `:MasonInstall` line above            |
+| `fixjson`      | json                   | Mason  | in the `:MasonInstall` line above            |
 | `gofumpt`      | go                     | go     | `go install mvdan.cc/gofumpt@latest`         |
 | `go_revive`    | go                     | go     | `go install github.com/mgechev/revive@latest` |
 
-> The brew tools are in the Brewfile; the npm/pip/go ones stay in their own
-> ecosystems on purpose (same reasoning as node/rust above — don't let brew shadow a
-> version-managed toolchain). The go tools also need a Go toolchain on `PATH`
-> (`brew install go` or the official installer), which `gopls` requires anyway.
+> The brew tools are in the Brewfile. The web tools (`prettierd`/`eslint_d`/`fixjson`)
+> go through **Mason** so they survive `nvm` Node-version switches — a global
+> `npm i -g` lives under the active Node version and vanishes the moment you install a
+> newer one. They still need *some* Node on `PATH` at runtime. The pip/go tools stay
+> in their own ecosystems (same reasoning as node/rust above). The go tools also need
+> a Go toolchain on `PATH` (`brew install go` or the official installer), which
+> `gopls` requires anyway.
 
 ## Daily use
 
