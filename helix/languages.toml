@@ -7,3 +7,46 @@ parameterHints.enable = false    # `name:` hints at call sites
 chainingHints.enable = false     # intermediate types in method chains
 closingBraceHints.enable = false # `// fn foo` after long closing braces
 bindingModeHints.enable = false  # `ref`/`mut` hints in patterns
+
+# ESLint via vscode-eslint-language-server (same engine as VSCode / our nvim setup).
+# It resolves each project's LOCAL eslint + flat config from node_modules automatically,
+# so it is monorepo/pnpm friendly. Install: npm i -g vscode-langservers-extracted
+#
+# Auto-fix on save: Helix has no "code actions on save", so we expose eslint's
+# `format = true` (LSP formatting == `eslint --fix`) and exclude "format" from the
+# other servers below; `auto-format = true` then runs eslint --fix on every :w.
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+validate = "on"
+run = "onType"
+workingDirectory = { mode = "location" }
+codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = true } }
+format = true
+
+[[language]]
+name = "javascript"
+language-servers = [ { name = "typescript-language-server", except-features = ["format"] }, "eslint" ]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ { name = "typescript-language-server", except-features = ["format"] }, "eslint" ]
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = [ { name = "typescript-language-server", except-features = ["format"] }, "eslint" ]
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [ { name = "typescript-language-server", except-features = ["format"] }, "eslint" ]
+auto-format = true
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = ["format"] }, "eslint" ]
+auto-format = true
