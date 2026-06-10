@@ -129,9 +129,8 @@ tool is on `PATH`. Install only the ones for languages you actually use.
 | `shfmt`        | sh                     | brew   | `brew bundle` (in Brewfile)                  |
 | `hadolint`     | docker                 | brew   | `brew bundle` (in Brewfile)                  |
 | `clang-format` | c, cpp                 | brew   | `brew bundle` (in Brewfile)                  |
-| `cpplint`      | c, cpp                 | pip    | `pipx install cpplint`                       |
-| `flake8`       | python                 | pip    | `pipx install flake8`                        |
-| `black`        | python                 | pip    | `pipx install black`                         |
+| `cpplint`      | c, cpp                 | uv     | `uv tool install cpplint`                    |
+| `ruff`         | python (lint + format) | uv     | `uv tool install ruff` — one binary, replaces flake8 + black |
 | `prettier_d`   | css/html/json/md/js/ts/svelte/vue | Mason | in the `:MasonInstall` line above        |
 | `eslint_d`     | js/ts/json/svelte/vue  | Mason  | in the `:MasonInstall` line above            |
 | `fixjson`      | json                   | Mason  | in the `:MasonInstall` line above            |
@@ -141,10 +140,15 @@ tool is on `PATH`. Install only the ones for languages you actually use.
 > The brew tools are in the Brewfile. The web tools (`prettierd`/`eslint_d`/`fixjson`)
 > go through **Mason** so they survive `nvm` Node-version switches — a global
 > `npm i -g` lives under the active Node version and vanishes the moment you install a
-> newer one. They still need *some* Node on `PATH` at runtime. The pip/go tools stay
-> in their own ecosystems (same reasoning as node/rust above). The go tools also need
-> a Go toolchain on `PATH` (`brew install go` or the official installer), which
-> `gopls` requires anyway.
+> newer one (they still need *some* Node on `PATH` at runtime). The Python tools use
+> **`uv tool install`** (`uv` is in the Brewfile) — isolated per-tool, on `PATH`, fast.
+> `ruff` (Astral, Rust) is a single binary that replaces both flake8 (lint) and black
+> (format); `ruff_sort` is also available if you want import sorting. The go tools need
+> a Go toolchain on `PATH` (`brew install go` or the official installer), which `gopls`
+> requires anyway.
+>
+> `uv tool` shims land in `~/.local/bin` — make sure it's on your `PATH` (run
+> `uv tool update-shell` once) or efm won't find `ruff`/`cpplint`.
 
 ## Daily use
 

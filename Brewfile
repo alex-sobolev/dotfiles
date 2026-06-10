@@ -24,8 +24,10 @@ brew "ripgrep"          # fzf-lua live grep (rg).
 brew "fd"               # fzf-lua file finder.
 
 # --- linters / formatters (efm-langserver shells out to these) ---
-# Only the brew-native tools live here (no language version manager of their own).
-# The pip/npm/go-based efm tools are per-language — see README "Linters & formatters".
+# Brew-native tools live here (no language version manager of their own). The Python
+# efm tools are installed with `uv tool install` (uv is below); the npm/go ones live
+# in Mason / their own ecosystems — see README "Linters & formatters".
+brew "uv"              # fast Rust installer for Python CLIs (`uv tool install black …`)
 brew "shellcheck"      # sh / bash linter      (efm: sh)
 brew "shfmt"           # sh / bash formatter   (efm: sh)
 brew "hadolint"        # Dockerfile linter     (efm: docker)
