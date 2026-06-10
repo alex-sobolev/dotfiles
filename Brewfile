@@ -18,6 +18,8 @@ brew "tree-sitter-cli"  # REQUIRED by nvim-treesitter `main` branch: parser inst
                         # NOTE: the `tree-sitter` formula is the library only (no
                         # bin/) — `tree-sitter-cli` provides the actual CLI binary.
 brew "luarocks"         # lazy.nvim luarocks support (flagged by :checkhealth lazy).
+brew "fzf"              # fzf-lua's fuzzy-finder backend — the `fzf` binary it shells
+                        # out to. Without it fzf-lua pickers fail to open.
 brew "ripgrep"          # fzf-lua live grep (rg).
 brew "fd"               # fzf-lua file finder.
 

@@ -49,6 +49,7 @@ brew bundle --file ~/dev/dotfiles/Brewfile
 | --------------- | ------------------------------------------------------------------ |
 | `tree-sitter-cli` | **nvim-treesitter `main` branch** — parser install/`:TSUpdate` shells out to this CLI (hard requirement; the `tree-sitter` formula is the library only) |
 | `luarocks`      | `lazy.nvim` luarocks support (flagged by `:checkhealth lazy`)       |
+| `fzf`           | `fzf-lua` fuzzy-finder backend — the `fzf` binary it shells out to (pickers won't open without it) |
 | `ripgrep`       | `fzf-lua` live grep                                                 |
 | `fd`            | `fzf-lua` file finder                                               |
 
