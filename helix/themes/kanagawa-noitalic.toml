@@ -1,0 +1,5 @@
+inherits = "kanagawa"
+
+# Drop the italic modifier on keywords (kanagawa sets it by default).
+# Keep the original foreground color (oniViolet, inherited from kanagawa's palette).
+"keyword" = { fg = "oniViolet" }

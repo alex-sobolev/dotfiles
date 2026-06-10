@@ -1,0 +1,9 @@
+# rust-analyzer inlay hint tuning.
+# The global on/off switch lives in config.toml (editor.lsp.display-inlay-hints).
+# This block controls *which* categories rust-analyzer emits.
+[language-server.rust-analyzer.config.inlayHints]
+typeHints.enable = true          # inferred types after `let` bindings
+parameterHints.enable = false    # `name:` hints at call sites
+chainingHints.enable = false     # intermediate types in method chains
+closingBraceHints.enable = false # `// fn foo` after long closing braces
+bindingModeHints.enable = false  # `ref`/`mut` hints in patterns

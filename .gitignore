@@ -1,0 +1,12 @@
+# OS / editor junk
+.DS_Store
+*~
+*.swp
+*.swo
+
+# local Claude project data (not shared across machines)
+nvim/.claude/
+
+# per-machine override files (kept local, never committed)
+ghostty/local
+nvim/lua/local.lua

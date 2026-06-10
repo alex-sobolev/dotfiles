@@ -1,0 +1,11 @@
+window-width = 88
+window-height = 20
+background-opacity = 0.95
+cursor-style = block
+
+font-family = JetBrainsMono Nerd Font
+font-size = 17
+font-feature = "-liga, -calt"
+font-thicken = true
+
+theme = Kanagawa Wave
