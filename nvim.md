@@ -40,7 +40,8 @@ machine) already use. Set them up however you prefer:
 
 ```sh
 # Node — needed on PATH for JS-based LSP servers (ts_ls, eslint, bashls, jsonls,
-# yamlls, tailwindcss, emmet, dockerls). Install via nvm (https://github.com/nvm-sh/nvm):
+# yamlls, tailwindcss, emmet_language_server, docker_language_server). Install via nvm
+# (https://github.com/nvm-sh/nvm):
 nvm install --lts && nvm use --lts
 
 # Rust — for rustaceanvim + the codelldb DAP. Install via the official rustup

@@ -9,8 +9,8 @@ require("servers.ts_ls")(capabilities)
 require("servers.eslint")(capabilities)
 require("servers.bashls")(capabilities)
 require("servers.clangd")(capabilities)
-require("servers.dockerls")(capabilities)
-require("servers.emmet_ls")(capabilities)
+require("servers.docker_language_server")(capabilities)
+require("servers.emmet_language_server")(capabilities)
 require("servers.yamlls")(capabilities)
 require("servers.tailwindcss")(capabilities)
 require("servers.taplo")(capabilities)
@@ -27,8 +27,8 @@ vim.lsp.enable({
   'eslint',
   'bashls',
   'clangd',
-  'dockerls',
-  'emmet_ls',
+  'docker_language_server',
+  'emmet_language_server',
   'yamlls',
   'tailwindcss',
   'taplo',
