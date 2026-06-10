@@ -64,8 +64,8 @@ through brew would shadow/conflict with the version managers most people (and th
 machine) already use. Set them up however you prefer:
 
 ```sh
-# Node — needed on PATH for JS-based LSP servers (ts_ls, bashls, jsonls, yamlls,
-# tailwindcss, emmet, dockerls). Install via nvm (https://github.com/nvm-sh/nvm):
+# Node — needed on PATH for JS-based LSP servers (ts_ls, eslint, bashls, jsonls,
+# yamlls, tailwindcss, emmet, dockerls). Install via nvm (https://github.com/nvm-sh/nvm):
 nvm install --lts && nvm use --lts
 
 # Rust — for rustaceanvim + the codelldb DAP. Install via the official rustup
@@ -104,13 +104,14 @@ Mason packages aren't part of the repo (they live in nvim's data dir), so instal
 them in nvim after cloning. Open nvim and run:
 
 ```vim
-:MasonInstall lua-language-server pyright gopls json-lsp typescript-language-server bash-language-server clangd docker-language-server emmet-language-server yaml-language-server tailwindcss-language-server taplo efm luacheck stylua prettierd eslint_d fixjson codelldb
+:MasonInstall lua-language-server pyright gopls json-lsp typescript-language-server eslint-lsp bash-language-server clangd docker-language-server emmet-language-server yaml-language-server tailwindcss-language-server taplo efm luacheck stylua prettierd fixjson codelldb
 ```
 
-This is the Mason package set for the servers enabled in `nvim/lua/servers/init.lua`,
-plus `codelldb` (Rust DAP) and the Mason-managed efm tools (`luacheck`, `stylua`,
-`prettierd`, `eslint_d`, `fixjson`). The remaining efm linters/formatters are **not**
-Mason-managed — see the next section.
+This is the Mason package set for the servers enabled in `nvim/lua/servers/init.lua`
+(`eslint-lsp` provides the `eslint` server — see the note below), plus `codelldb`
+(Rust DAP) and the Mason-managed efm tools (`luacheck`, `stylua`, `prettierd`,
+`fixjson`). The remaining efm linters/formatters are **not** Mason-managed — see the
+next section.
 
 > Keep this list in sync whenever you add or remove a server in `servers/init.lua`.
 
@@ -120,6 +121,17 @@ Mason-managed — see the next section.
 external linter/formatter binaries per filetype. They aren't bundled — each comes
 from the source below. Format/lint for a language silently does nothing until its
 tool is on `PATH`. Install only the ones for languages you actually use.
+
+> **ESLint is no longer an efm tool.** Linting + `eslint --fix` now run through the
+> dedicated **eslint LSP** (`vscode-eslint-language-server`, Mason package `eslint-lsp`,
+> configured in `nvim/lua/servers/eslint.lua`) — the same engine VSCode/JetBrains use.
+> It resolves each package's _local_ eslint + flat config automatically (pnpm-monorepo
+> friendly), unlike the global `eslint_d` daemon which mis-resolved plugins in monorepos.
+> On save, `:LspEslintFixAll` runs first (synchronous), then efm runs Prettier/fixjson —
+> so fixes land before formatting. The server only attaches when an eslint config file
+> **and** a lockfile exist up the tree, so it stays dormant in non-eslint projects.
+> Filetypes are the lspconfig defaults (js/ts/`*react`/vue/svelte/astro/htmlangular) plus
+> `json`/`jsonc`, so JSON-targeting eslint rules lint and `--fix` too.
 
 | Tool           | Filetype(s)            | Source | Install                                      |
 | -------------- | ---------------------- | ------ | -------------------------------------------- |
@@ -132,13 +144,12 @@ tool is on `PATH`. Install only the ones for languages you actually use.
 | `cpplint`      | c, cpp                 | uv     | `uv tool install cpplint`                    |
 | `ruff`         | python (lint + format) | uv     | `uv tool install ruff` — one binary, replaces flake8 + black |
 | `prettier_d`   | css/html/json/md/js/ts/svelte/vue | Mason | in the `:MasonInstall` line above        |
-| `eslint_d`     | js/ts/json/svelte/vue  | Mason  | in the `:MasonInstall` line above            |
 | `fixjson`      | json                   | Mason  | in the `:MasonInstall` line above            |
 | `gofumpt`      | go                     | go     | `go install mvdan.cc/gofumpt@latest`         |
 | `go_revive`    | go                     | go     | `go install github.com/mgechev/revive@latest` |
 
-> The brew tools are in the Brewfile. The web tools (`prettierd`/`eslint_d`/`fixjson`)
-> go through **Mason** so they survive `nvm` Node-version switches — a global
+> The brew tools are in the Brewfile. The web tools (`prettierd`/`fixjson`, plus the
+> `eslint-lsp` server) go through **Mason** so they survive `nvm` Node-version switches — a global
 > `npm i -g` lives under the active Node version and vanishes the moment you install a
 > newer one (they still need *some* Node on `PATH` at runtime). The Python tools use
 > **`uv tool install`** (`uv` is in the Brewfile) — isolated per-tool, on `PATH`, fast.

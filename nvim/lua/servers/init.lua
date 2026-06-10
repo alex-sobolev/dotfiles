@@ -6,6 +6,7 @@ require("servers.pyright")(capabilities)
 require("servers.gopls")(capabilities)
 require("servers.jsonls")(capabilities)
 require("servers.ts_ls")(capabilities)
+require("servers.eslint")(capabilities)
 require("servers.bashls")(capabilities)
 require("servers.clangd")(capabilities)
 require("servers.dockerls")(capabilities)
@@ -23,6 +24,7 @@ vim.lsp.enable({
   'gopls',
   'jsonls',
   'ts_ls',
+  'eslint',
   'bashls',
   'clangd',
   'dockerls',

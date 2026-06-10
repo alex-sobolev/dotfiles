@@ -16,7 +16,6 @@ return function(capabilities)
 	local go_revive = require("efmls-configs.linters.go_revive") -- go linter
 	local gofumpt = require("efmls-configs.formatters.gofumpt") -- go formatter
 	local prettier_d = require("efmls-configs.formatters.prettier_d") -- ts/js/solidity/json/docker/html/css/react/svelte/vue formatter
-	local eslint_d = require("efmls-configs.linters.eslint_d") -- ts/js/solidity/json/react/svelte/vue linter
 	local fixjson = require("efmls-configs.formatters.fixjson") -- json formatter
 	local shellcheck = require("efmls-configs.linters.shellcheck") -- bash linter
 	local shfmt = require("efmls-configs.formatters.shfmt") -- bash formatter
@@ -62,18 +61,18 @@ return function(capabilities)
 				docker = { hadolint, prettier_d },
 				go = { gofumpt, go_revive },
 				html = { prettier_d },
-				javascript = { eslint_d, prettier_d },
-				javascriptreact = { eslint_d, prettier_d },
-				json = { eslint_d, fixjson },
-				jsonc = { eslint_d, fixjson },
+				javascript = { prettier_d },
+				javascriptreact = { prettier_d },
+				json = { fixjson },
+				jsonc = { fixjson },
 				lua = { luacheck, stylua },
 				markdown = { prettier_d },
 				python = { ruff, ruff_formatter },
 				sh = { shellcheck, shfmt },
-				svelte = { eslint_d, prettier_d },
-				typescript = { eslint_d, prettier_d },
-				typescriptreact = { eslint_d, prettier_d },
-				vue = { eslint_d, prettier_d },
+				svelte = { prettier_d },
+				typescript = { prettier_d },
+				typescriptreact = { prettier_d },
+				vue = { prettier_d },
 			},
 		},
 	})

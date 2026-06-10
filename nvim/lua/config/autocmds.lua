@@ -41,6 +41,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 			vim.lsp.buf.format({ name = "rust-analyzer", async = true })
 			return
 		end
+		-- ESLint --fix first (project-local eslint via the vscode-eslint LSP), then formatters.
+		-- LspEslintFixAll is synchronous, so the fixes land before Prettier/fixjson run below.
+		if not vim.tbl_isempty(vim.lsp.get_clients({ bufnr = 0, name = "eslint" })) then
+			pcall(vim.cmd, "LspEslintFixAll")
+		end
 		local efm = vim.lsp.get_clients({ name = "efm" })
 		if vim.tbl_isempty(efm) then
 			return
