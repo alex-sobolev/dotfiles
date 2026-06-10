@@ -9,3 +9,7 @@ font-feature = "-liga, -calt"
 font-thicken = true
 
 theme = Kanagawa Wave
+
+# Optionally pull in machine-local overrides. The `?` prefix makes this a no-op
+# on machines that don't have the file, so the shared config stays portable.
+config-file = ?local
