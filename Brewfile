@@ -23,6 +23,14 @@ brew "fzf"              # fzf-lua's fuzzy-finder backend — the `fzf` binary it
 brew "ripgrep"          # fzf-lua live grep (rg).
 brew "fd"               # fzf-lua file finder.
 
+# --- linters / formatters (efm-langserver shells out to these) ---
+# Only the brew-native tools live here (no language version manager of their own).
+# The pip/npm/go-based efm tools are per-language — see README "Linters & formatters".
+brew "shellcheck"      # sh / bash linter      (efm: sh)
+brew "shfmt"           # sh / bash formatter   (efm: sh)
+brew "hadolint"        # Dockerfile linter     (efm: docker)
+brew "clang-format"    # c / c++ formatter     (efm: c, cpp)
+
 # --- fonts ---
 cask "font-jetbrains-mono-nerd-font"   # ghostty `font-family = JetBrainsMono Nerd Font`
 

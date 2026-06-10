@@ -52,6 +52,10 @@ brew bundle --file ~/dev/dotfiles/Brewfile
 | `fzf`           | `fzf-lua` fuzzy-finder backend — the `fzf` binary it shells out to (pickers won't open without it) |
 | `ripgrep`       | `fzf-lua` live grep                                                 |
 | `fd`            | `fzf-lua` file finder                                               |
+| `shellcheck`    | efm-langserver — shell (`sh`/`bash`) linter                         |
+| `shfmt`         | efm-langserver — shell (`sh`/`bash`) formatter                      |
+| `hadolint`      | efm-langserver — Dockerfile linter                                  |
+| `clang-format`  | efm-langserver — C/C++ formatter                                    |
 
 ### Via your own version manager (deliberately NOT in the Brewfile)
 
@@ -105,10 +109,38 @@ them in nvim after cloning. Open nvim and run:
 
 This is the Mason package set for the servers enabled in `nvim/lua/servers/init.lua`,
 plus `codelldb` (Rust DAP) and the Mason-managed efm tools (`luacheck`, `stylua`).
-Other efm linters/formatters (black, prettier_d, eslint_d, …) come from your system
-package manager (brew/npm/pip).
+The remaining efm linters/formatters are **not** Mason-managed — see the next section.
 
 > Keep this list in sync whenever you add or remove a server in `servers/init.lua`.
+
+### Linters & formatters (efm-langserver)
+
+`efm-langserver` (configured in `nvim/lua/servers/efm-langserver.lua`) shells out to
+external linter/formatter binaries per filetype. They aren't bundled — each comes
+from the source below. Format/lint for a language silently does nothing until its
+tool is on `PATH`. Install only the ones for languages you actually use.
+
+| Tool           | Filetype(s)            | Source | Install                                      |
+| -------------- | ---------------------- | ------ | -------------------------------------------- |
+| `luacheck`     | lua                    | Mason  | in the `:MasonInstall` line above            |
+| `stylua`       | lua                    | Mason  | in the `:MasonInstall` line above            |
+| `shellcheck`   | sh                     | brew   | `brew bundle` (in Brewfile)                  |
+| `shfmt`        | sh                     | brew   | `brew bundle` (in Brewfile)                  |
+| `hadolint`     | docker                 | brew   | `brew bundle` (in Brewfile)                  |
+| `clang-format` | c, cpp                 | brew   | `brew bundle` (in Brewfile)                  |
+| `cpplint`      | c, cpp                 | pip    | `pipx install cpplint`                       |
+| `flake8`       | python                 | pip    | `pipx install flake8`                        |
+| `black`        | python                 | pip    | `pipx install black`                         |
+| `prettier_d`   | css/html/json/md/js/ts/svelte/vue | npm | `npm i -g @fsouza/prettierd`           |
+| `eslint_d`     | js/ts/json/svelte/vue  | npm    | `npm i -g eslint_d`                          |
+| `fixjson`      | json                   | npm    | `npm i -g fixjson`                           |
+| `gofumpt`      | go                     | go     | `go install mvdan.cc/gofumpt@latest`         |
+| `go_revive`    | go                     | go     | `go install github.com/mgechev/revive@latest` |
+
+> The brew tools are in the Brewfile; the npm/pip/go ones stay in their own
+> ecosystems on purpose (same reasoning as node/rust above — don't let brew shadow a
+> version-managed toolchain). The go tools also need a Go toolchain on `PATH`
+> (`brew install go` or the official installer), which `gopls` requires anyway.
 
 ## Daily use
 
