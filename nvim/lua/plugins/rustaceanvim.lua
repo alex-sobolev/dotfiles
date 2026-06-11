@@ -43,6 +43,12 @@ local config = function()
 					cargo = {
 						allFeatures = true,
 					},
+					inlayHints = {
+						bindingModeHints = { enable = true },
+						closureReturnTypeHints = { enable = "always" },
+						parameterHints = { enable = true },
+						chainingHints = { enable = true },
+					},
 				},
 			},
 		},

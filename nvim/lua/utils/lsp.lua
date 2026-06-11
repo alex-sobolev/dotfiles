@@ -19,6 +19,16 @@ M.on_attach = function(event)
 		buffer = bufnr, -- restrict the keymap to the local buffer number
 	}
 
+	-- Inlay hints (type / parameter annotations). rust-analyzer (and ts/lua) emit
+	-- these by default; Neovim just doesn't *display* them until enabled per-buffer.
+	-- Toggle with <leader>ih when they get noisy.
+	if client:supports_method("textDocument/inlayHint", bufnr) then
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+		keymap("n", "<leader>ih", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+		end, opts)
+	end
+
 	-- native neovim keymaps
 	keymap("n", "<leader>gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- goto definition
 	keymap("n", "<leader>gD", "<cmd>Lspsaga goto_definition<CR>", opts) -- goto definition
