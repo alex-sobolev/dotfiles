@@ -8,6 +8,14 @@ chainingHints.enable = false     # intermediate types in method chains
 closingBraceHints.enable = false # `// fn foo` after long closing braces
 bindingModeHints.enable = false  # `ref`/`mut` hints in patterns
 
+[language-server.taplo.config.schema]
+enabled = true
+
+[language-server.taplo.config.schema.associations]
+'Cargo\.toml$' = "https://www.schemastore.org/cargo.json"
+'rustfmt\.toml$' = "https://www.schemastore.org/rustfmt.json"
+'rust-toolchain\.toml$' = "https://www.schemastore.org/rust-toolchain.json"
+
 [[language]]
 name = "toml"
 language-servers = ["taplo"]
