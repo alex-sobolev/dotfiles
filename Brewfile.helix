@@ -2,9 +2,10 @@
 # Install with:  brew bundle --file ~/dev/dotfiles/Brewfile.helix
 
 brew "helix"
+brew "taplo" # TOML language server (schema validation + formatting)
 
-# That's it on the brew side. The language servers Helix needs are NOT brew
-# packages — they're installed globally with npm (Node via nvm) or rustup:
+# Aside from taplo, the language servers Helix needs are NOT brew packages —
+# they're installed globally with npm (Node via nvm) or rustup:
 #   npm i -g typescript typescript-language-server vscode-langservers-extracted
 #   rustup component add rust-analyzer
 # Full dependency list + install docs: helix.md.
