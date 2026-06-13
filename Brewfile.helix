@@ -2,10 +2,16 @@
 # Install with:  brew bundle --file ~/dev/dotfiles/Brewfile.helix
 
 brew "helix"
-brew "taplo" # TOML language server (schema validation + formatting)
 
-# Aside from taplo, the language servers Helix needs are NOT brew packages —
-# they're installed globally with npm (Node via nvm) or rustup:
-#   npm i -g typescript typescript-language-server vscode-langservers-extracted
+# Language servers available via brew:
+brew "taplo"                    # TOML
+brew "gopls"                    # Go
+brew "golangci-lint"            # Go: linter binary the lint LSP shells out to
+brew "golangci-lint-langserver" # Go: golangci-lint LSP wrapper
+
+# Debug adapters (DAP):
+brew "delve"                    # Go (provides the `dlv` binary)
+
+# rust-analyzer is the one server not on brew:
 #   rustup component add rust-analyzer
 # Full dependency list + install docs: helix.md.
