@@ -1,0 +1,14 @@
+inherits = "jetbrains_dark"
+
+# Drop the italic modifier (jetbrains_dark italicizes headings and markup emphasis).
+# Overrides replace the whole style, so the heading keeps its original foreground.
+"markup.heading" = { fg = "red199" }
+"markup.italic" = { modifiers = [] }
+
+# Cursor: jetbrains_dark defines no ui.cursor, so it falls back to a hard-to-see
+# default that blends into the blue palette. Pin it to the theme's own light
+# foreground (blue196 = #bcbec4) with a dark glyph — same idea as kanagawa pinning
+# its cursor to fujiWhite, but using a color native to this theme. Secondary
+# cursors use a slightly dimmer light grey (blue171 = #A1A3AB).
+"ui.cursor" = { fg = "blue34", bg = "blue171" }
+"ui.cursor.primary" = { fg = "blue34", bg = "blue196" }
