@@ -1,0 +1,22 @@
+inherits = "tokyonight_storm"
+
+# Drop the italic modifier on the scopes tokyonight sets italic by default.
+# Overrides replace the whole style (modifiers don't merge), so each scope is
+# redefined with its original foreground color from tokyonight's palette.
+"comment" = { fg = "comment" }
+"function" = { fg = "blue" }
+"keyword" = { fg = "purple" }
+"keyword.control.return" = { fg = "purple" }
+"variable.parameter" = { fg = "yellow" }
+"ui.text.inactive" = { fg = "comment" }
+
+# Literal markdown emphasis (*text*). Remove this line if you'd rather keep
+# emphasized prose slanted; left here to honor "no italics for anything".
+"markup.italic" = { modifiers = [] }
+
+# Cursor: tokyonight leaves it "reversed", so the primary cursor takes on the
+# color of whatever's under it (the per-syntax shift in normal mode). Pin it to a
+# fixed white block like kanagawa does — bright white primary, dimmer secondary,
+# dark glyph (bg = block color, fg = glyph drawn on top).
+"ui.cursor" = { fg = "bg", bg = "#c8c093" }
+"ui.cursor.primary" = { fg = "bg", bg = "#dcd7ba" }
