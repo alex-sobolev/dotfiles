@@ -4,4 +4,13 @@ inherits = "kanagawa"
 # Keep the original foreground color (oniViolet, inherited from kanagawa's palette).
 "keyword" = { fg = "oniViolet" }
 
+# kanagawa colors return/exception keywords peachRed by default; match them to
+# the rest of the keywords (oniViolet) instead.
+"keyword.control.return" = { fg = "oniViolet" }
+"keyword.control.exception" = { fg = "oniViolet" }
+
+# Lighten inlay hints (inferred types) — kanagawa's sumiInk6 (#54546D) reads too
+# dark; use a neutral grey instead.
+"ui.virtual.inlay-hint" = "katanaGray"
+
 "ui.bufferline.active" = { fg = "oldWhite", bg = "waveBlue2", modifiers = ["bold"] }
