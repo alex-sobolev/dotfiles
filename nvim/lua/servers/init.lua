@@ -13,7 +13,7 @@ require("servers.docker_language_server")(capabilities)
 require("servers.emmet_language_server")(capabilities)
 require("servers.yamlls")(capabilities)
 require("servers.tailwindcss")(capabilities)
-require("servers.taplo")(capabilities)
+require("servers.tombi")(capabilities)
 
 -- Linters & Formatters
 require("servers.efm-langserver")(capabilities)
@@ -31,7 +31,7 @@ vim.lsp.enable({
   'emmet_language_server',
   'yamlls',
   'tailwindcss',
-  'taplo',
+  'tombi',
   'efm',
 })
 
