@@ -9,3 +9,11 @@ inherits = "catppuccin_macchiato"
 "namespace" = { fg = "yellow" }
 "markup.italic" = { fg = "red" }
 "markup.link.url" = { fg = "blue", modifiers = ["underlined"] }
+
+# `self` is scoped variable.builtin (catppuccin's red); color it like the
+# keywords (mauve). Note: this recolors other builtin variables too.
+"variable.builtin" = { fg = "mauve" }
+
+# Lighten inlay hints (inferred types) — catppuccin's surface1 (#494d64) is too
+# dark to read; move it up the grey ramp to overlay1. Keep the subtle box.
+"ui.virtual.inlay-hint" = { fg = "overlay1", bg = "mantle" }
