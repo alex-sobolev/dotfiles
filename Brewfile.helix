@@ -4,7 +4,7 @@
 brew "helix"
 
 # Language servers available via brew:
-brew "taplo"                    # TOML
+brew "tombi"                    # TOML
 brew "gopls"                    # Go
 brew "golangci-lint"            # Go: linter binary the lint LSP shells out to
 brew "golangci-lint-langserver" # Go: golangci-lint LSP wrapper
