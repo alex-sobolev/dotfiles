@@ -9,6 +9,10 @@ inherits = "kanagawa"
 "keyword.control.return" = { fg = "oniViolet" }
 "keyword.control.exception" = { fg = "oniViolet" }
 
+# `self` is scoped variable.builtin (kanagawa's waveRed); color it like the
+# keywords (oniViolet) too. Note: this recolors other builtin variables as well.
+"variable.builtin" = { fg = "oniViolet" }
+
 # Lighten inlay hints (inferred types) — kanagawa's sumiInk6 (#54546D) reads too
 # dark; use a neutral grey instead.
 "ui.virtual.inlay-hint" = "katanaGray"
