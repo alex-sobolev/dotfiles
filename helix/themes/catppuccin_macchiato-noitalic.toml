@@ -1,0 +1,11 @@
+inherits = "catppuccin_macchiato"
+
+# Drop the italic modifier on the scopes catppuccin sets italic by default.
+# Overrides replace the whole style (modifiers don't merge), so each scope is
+# redefined with its original foreground; markup.link.url keeps its underline.
+"comment" = { fg = "overlay2" }
+"variable.parameter" = { fg = "maroon" }
+"keyword.control.conditional" = { fg = "mauve" }
+"namespace" = { fg = "yellow" }
+"markup.italic" = { fg = "red" }
+"markup.link.url" = { fg = "blue", modifiers = ["underlined"] }
