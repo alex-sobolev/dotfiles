@@ -13,6 +13,11 @@ inherits = "kanagawa"
 # keywords (oniViolet) too. Note: this recolors other builtin variables as well.
 "variable.builtin" = { fg = "oniViolet" }
 
+# Module path segments (std/fs/io) are @namespace — kanagawa's surimiOrange is
+# too loud across every qualified path; match them to the light-blue builtin-type
+# color (springBlue, what `i32` etc. use) instead.
+"namespace" = "springBlue"
+
 # Lighten inlay hints (inferred types) — kanagawa's sumiInk6 (#54546D) reads too
 # dark; use a neutral grey instead.
 "ui.virtual.inlay-hint" = "katanaGray"
