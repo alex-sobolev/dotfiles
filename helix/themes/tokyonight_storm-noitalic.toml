@@ -5,10 +5,22 @@ inherits = "tokyonight_storm"
 # redefined with its original foreground color from tokyonight's palette.
 "comment" = { fg = "comment" }
 "function" = { fg = "blue" }
-"keyword" = { fg = "purple" }
-"keyword.control.return" = { fg = "purple" }
 "variable.parameter" = { fg = "yellow" }
 "ui.text.inactive" = { fg = "comment" }
+
+# Keywords: tokyonight splits them across two violets — magenta (#bb9af7, lighter:
+# fn/match/operators) and purple (#9d7cd8, darker: the base `keyword`, so let/mut).
+# Unify them all to the lighter magenta. (Also drops the italic these scopes had.)
+"keyword" = { fg = "magenta" }
+"keyword.control.return" = { fg = "magenta" }
+
+# Enum variants (Ok/Err/Some/None) default to orange (type.enum.variant). Match
+# them to the type color (aqua) used for Result/String/io::Error etc.
+"type.enum.variant" = { fg = "aqua" }
+
+# `self` is scoped variable.builtin (tokyonight's red); color it like the
+# keywords (magenta). Note: this recolors other builtin variables too.
+"variable.builtin" = { fg = "magenta" }
 
 # Literal markdown emphasis (*text*). Remove this line if you'd rather keep
 # emphasized prose slanted; left here to honor "no italics for anything".
@@ -20,3 +32,8 @@ inherits = "tokyonight_storm"
 # dark glyph (bg = block color, fg = glyph drawn on top).
 "ui.cursor" = { fg = "bg", bg = "#c8c093" }
 "ui.cursor.primary" = { fg = "bg", bg = "#dcd7ba" }
+
+# Inlay hints (inferred types): tokyonight uses green teal + a teal box (loud
+# green). Use a muted grey instead — fg-linenr stays distinct from the variable
+# color (fg), unlike fg-dark which was too close. No box.
+"ui.virtual.inlay-hint" = "fg-linenr"
