@@ -16,6 +16,10 @@ return {
 			view = {
 				adaptive_size = true,
 			},
+			update_focused_file = {
+				enable = true, -- Reveal & highlight the active buffer's file in the tree
+				update_root = false, -- Keep the tree root fixed (don't follow the file elsewhere)
+			},
 		})
 	end,
 }
