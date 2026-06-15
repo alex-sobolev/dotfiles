@@ -28,10 +28,10 @@ inherits = "tokyonight_storm"
 
 # Cursor: tokyonight leaves it "reversed", so the primary cursor takes on the
 # color of whatever's under it (the per-syntax shift in normal mode). Pin it to a
-# fixed white block like kanagawa does — bright white primary, dimmer secondary,
-# dark glyph (bg = block color, fg = glyph drawn on top).
-"ui.cursor" = { fg = "bg", bg = "#c8c093" }
-"ui.cursor.primary" = { fg = "bg", bg = "#dcd7ba" }
+# fixed block using the theme's own cool foreground (fg — what stock tokyonight
+# uses); dimmer fg-dark for secondary cursors, dark glyph (bg = block, fg = glyph).
+"ui.cursor" = { fg = "bg", bg = "fg-dark" }
+"ui.cursor.primary" = { fg = "bg", bg = "fg" }
 
 # Inlay hints (inferred types): tokyonight uses green teal + a teal box (loud
 # green). Use a muted grey instead — fg-linenr stays distinct from the variable
