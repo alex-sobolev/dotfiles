@@ -43,6 +43,10 @@ local config = function()
 					cargo = {
 						allFeatures = true,
 					},
+					-- Run `cargo clippy` instead of `cargo check` for on-save diagnostics.
+					check = {
+						command = "clippy",
+					},
 					inlayHints = {
 						bindingModeHints = { enable = true },
 						closureReturnTypeHints = { enable = "always" },

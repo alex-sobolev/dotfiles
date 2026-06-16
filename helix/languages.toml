@@ -1,3 +1,7 @@
+# Run `cargo clippy` instead of `cargo check` for on-save diagnostics.
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
 # rust-analyzer inlay hint tuning.
 # The global on/off switch lives in config.toml (editor.lsp.display-inlay-hints).
 # This block controls *which* categories rust-analyzer emits.
