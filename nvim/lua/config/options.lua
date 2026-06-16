@@ -41,8 +41,8 @@ vim.opt.showmode = false -- Show mode in command line
 vim.opt.pumheight = 10 -- Popup menu height
 vim.opt.pumblend = 10 -- Popup menu transparency
 vim.opt.winblend = 0 -- Floating window transparency
-vim.opt.conceallevel = 2 -- Obsidian requirement
-vim.opt.concealcursor = "" -- Show markup even on cursor line
+vim.opt.conceallevel = 0 -- Never conceal; show text as-is (quotes, markup) in every filetype
+vim.opt.concealcursor = "" -- (moot at conceallevel=0) show markup even on the cursor line
 vim.opt.redrawtime = 10000 -- Timeout for syntax highlighting redraw
 vim.opt.maxmempattern = 20000 -- Max memory for pattern matching
 vim.opt.synmaxcol = 300 -- Syntax highlighting column limit
