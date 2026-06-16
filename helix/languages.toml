@@ -8,99 +8,9 @@ chainingHints.enable = false     # intermediate types in method chains
 closingBraceHints.enable = false # `// fn foo` after long closing braces
 bindingModeHints.enable = false  # `ref`/`mut` hints in patterns
 
-# ================================================================================================
-# ESLint (vscode-eslint-language-server)
-# Same engine nvim uses — resolves the project-LOCAL eslint from node_modules automatically.
-# nodePath = ""     → walk up from the file to find node_modules/.bin/eslint (never uses global)
-# workingDirectory  → "auto" infers CWD from package.json/eslint.config.js, so each package in a
-#                     pnpm monorepo gets its own eslint + config, exactly like VSCode does.
-# useFlatConfig is intentionally omitted: ESLint ≥9 enables it by default; <9 ignores it.
-# ================================================================================================
-[language-server.eslint]
-command = "vscode-eslint-language-server"
-args = ["--stdio"]
-
-[language-server.eslint.config]
-nodePath = ""
-validate = "on"
-run = "onType"
-problems = { shortenToSingleLine = false }
-rulesCustomizations = []
-experimental = {}
-
-[language-server.eslint.config.workingDirectory]
-mode = "auto"
-
-[language-server.eslint.config.codeAction.disableRuleComment]
-enable = true
-location = "separateLine"
-
-[language-server.eslint.config.codeAction.showDocumentation]
-enable = false
-
-[[language]]
-name = "javascript"
-language-servers = ["typescript-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "babel"] }
-auto-format = true
-
-[[language]]
-name = "jsx"
-language-servers = ["typescript-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "babel"] }
-auto-format = true
-
-[[language]]
-name = "typescript"
-language-servers = ["typescript-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = true
-
-[[language]]
-name = "tsx"
-language-servers = ["typescript-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = true
-
-[[language]]
-name = "vue"
-language-servers = ["typescript-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "vue"] }
-auto-format = true
-
-[[language]]
-name = "svelte"
-language-servers = ["typescript-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "babel"] }
-auto-format = true
-
-[[language]]
-name = "astro"
-language-servers = ["typescript-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "html"] }
-auto-format = true
-
-[[language]]
-name = "html"
-language-servers = ["vscode-html-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "html"] }
-auto-format = true
-
 [language-server.tombi]
 command = "tombi"
 args = ["lsp"]
-
-[[language]]
-name = "json"
-language-servers = ["vscode-json-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "json"] }
-auto-format = true
-
-[[language]]
-name = "jsonc"
-language-servers = ["vscode-json-language-server", "eslint"]
-formatter = { command = "prettier", args = ["--parser", "json"] }
-auto-format = true
 
 [[language]]
 name = "toml"
