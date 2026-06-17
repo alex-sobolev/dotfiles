@@ -1,0 +1,14 @@
+inherits = "ayu_mirage"
+
+# Drop the italic modifier on the scopes ayu_mirage sets italic by default.
+# Overrides replace the whole style (modifiers don't merge), so each scope is
+# redefined with its original foreground color from ayu_mirage's palette.
+"comment" = { fg = "gray" }
+
+# Literal markdown emphasis (*text*). Keep ayu's orange but drop the slant.
+# Remove this line if you'd rather keep emphasized prose italic.
+"markup.italic" = { fg = "orange" }
+
+# Jump labels (the f/F/t/T overlay): ayu marks them italic + bold. Keep bold for
+# legibility, drop the italic.
+"ui.virtual.jump-label" = { fg = "red", modifiers = ["bold"] }

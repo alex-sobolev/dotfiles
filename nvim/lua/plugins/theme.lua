@@ -71,4 +71,24 @@ return {
 		-- 	vim.cmd.colorscheme("jb")
 		-- end,
 	},
+	{
+		"Shatur/neovim-ayu",
+		main = "ayu", -- repo is neovim-ayu, but the Lua module is `ayu`
+		lazy = false,
+		priority = 999,
+		opts = {
+			mirage = true, -- mirage variant, matching the helix ayu_mirage theme
+			overrides = {
+				-- ayu sets these groups italic by default; flip them upright. Overrides
+				-- merge, so each group keeps its original foreground color.
+				Comment = { italic = false },
+				LspSignatureActiveParameter = { italic = false },
+				GitSignsCurrentLineBlame = { italic = false },
+			},
+		},
+		-- config = function(_, opts)
+		-- 	require("ayu").setup(opts)
+		-- 	vim.cmd.colorscheme("ayu-mirage")
+		-- end,
+	},
 }
