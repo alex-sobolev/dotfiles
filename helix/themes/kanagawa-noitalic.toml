@@ -22,4 +22,14 @@ inherits = "kanagawa"
 # Use the comment grey (fujiGray) — subtle and harmonizes with the warm palette.
 "ui.virtual.inlay-hint" = "fujiGray"
 
+# Tone down kanagawa's red-family scopes to the constant color (surimiOrange, what
+# `const PATH_ROOT` uses) for a calmer look:
+#   - function.macro (waveRed): assert_eq!, println!, and the `test` in #[test]
+#   - special (peachRed): the `?` try operator (Rust scopes `?` as @special, not
+#     @operator); note this also recolors `derive` in #[derive(...)]
+#   - attribute (waveRed): #![...] inner attributes (e.g. #![allow(...)])
+"function.macro" = "surimiOrange"
+"special" = "surimiOrange"
+"attribute" = "surimiOrange"
+
 "ui.bufferline.active" = { fg = "oldWhite", bg = "waveBlue2", modifiers = ["bold"] }
