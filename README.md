@@ -115,3 +115,7 @@ load an **untracked** local file each app reads if present:
   untracked `~/.config/ghostty/local` (the `?` makes it optional; loaded last, so
   it wins).
 - **Neovim** — see [nvim.md](nvim.md#per-machine-overrides).
+
+## License
+
+[MIT](LICENSE) — free to use, copy, and adapt.
