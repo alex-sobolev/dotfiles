@@ -1,6 +1,7 @@
 theme = "kanagawa-noitalic"
 
 [editor]
+default-yank-register = "+"
 line-number = "relative"
 mouse = true
 bufferline = "multiple"
