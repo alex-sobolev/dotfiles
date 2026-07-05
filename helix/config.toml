@@ -33,4 +33,11 @@ right = ["file-type", "spacer", "separator", "spacer", "file-encoding", "file-li
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
+C-y = [
+  ':sh rm -f /tmp/helix-yazi-chooser.$PPID',
+  ':insert-output yazi --chooser-file=/tmp/helix-yazi-chooser.$PPID',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/helix-yazi-chooser.$PPID}',
+  ':redraw',
+]
 
