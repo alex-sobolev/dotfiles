@@ -33,19 +33,6 @@ right = ["file-type", "spacer", "separator", "spacer", "file-encoding", "file-li
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
-C-y = [
-  ':sh rm -f /tmp/helix-yazi-chooser.$PPID',
-  ':insert-output yazi --chooser-file=/tmp/helix-yazi-chooser.$PPID < /dev/tty',
-  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-  ':open %sh{cat /tmp/helix-yazi-chooser.$PPID}',
-  ':redraw',
-]
-# Same as C-y, but reveals (highlights) the current file in Yazi
-C-e = [
-  ':sh rm -f /tmp/helix-yazi-chooser.$PPID',
-  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/helix-yazi-chooser.$PPID < /dev/tty',
-  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-  ':open %sh{cat /tmp/helix-yazi-chooser.$PPID}',
-  ':redraw',
-]
-
+# Copy the current file's path, starting from the working directory name.
+# Files outside the working directory expand to an absolute path already, so copy those as-is.
+C-p = ':sh case "%{buffer_name}" in /*) echo "%{buffer_name}";; *) echo "${PWD##*/}/%{buffer_name}";; esac | tr -d "\n" | pbcopy'
