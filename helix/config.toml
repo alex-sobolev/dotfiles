@@ -36,3 +36,8 @@ esc = ["collapse_selection", "keep_primary_selection"]
 # Copy the current file's path, starting from the working directory name.
 # Files outside the working directory expand to an absolute path already, so copy those as-is.
 C-p = ':sh case "%{buffer_name}" in /*) echo "%{buffer_name}";; *) echo "${PWD##*/}/%{buffer_name}";; esac | tr -d "\n" | pbcopy'
+
+# Pull the trimmed-back inlay hints up on demand. `space t` is unbound upstream,
+# so re-check it if a Helix upgrade adds something there.
+[keys.normal.space]
+t = ":toggle lsp.display-inlay-hints"

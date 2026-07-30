@@ -12,6 +12,39 @@ chainingHints.enable = false     # intermediate types in method chains
 closingBraceHints.enable = false # `// fn foo` after long closing braces
 bindingModeHints.enable = false  # `ref`/`mut` hints in patterns
 
+# Helix sets this by default, but a user `config` table replaces the built-in
+# one wholesale instead of merging into it, so it has to be repeated here.
+[language-server.rust-analyzer.config.files]
+watcher = "server"
+
+# typescript-language-server inlay hint tuning.
+# Helix's defaults enable all seven hint categories, and tsserver — unlike
+# rust-analyzer, which caps hints at `inlayHints.maxLength` (25 chars) — has no
+# truncation option. So inferred types print in full and the only lever is
+# choosing which categories to emit.
+# Same merge caveat as above: this replaces Helix's whole `config` table for
+# this server, so `hostInfo` has to be restated.
+[language-server.typescript-language-server.config]
+hostInfo = "helix"
+
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayVariableTypeHints = false            # main offender: full inferred type after every binding
+includeInlayFunctionLikeReturnTypeHints = false  # full inferred return type on every function
+includeInlayPropertyDeclarationTypeHints = false # full inferred type on every class property
+includeInlayFunctionParameterTypeHints = false   # types on untyped callback params
+includeInlayParameterNameHints = "literals"      # `name:` before literal args only, not every variable
+includeInlayParameterNameHintsWhenArgumentMatchesName = false
+includeInlayEnumMemberValueHints = true          # short, and not inferable by reading
+
+[language-server.typescript-language-server.config.javascript.inlayHints]
+includeInlayVariableTypeHints = false
+includeInlayFunctionLikeReturnTypeHints = false
+includeInlayPropertyDeclarationTypeHints = false
+includeInlayFunctionParameterTypeHints = false
+includeInlayParameterNameHints = "literals"
+includeInlayParameterNameHintsWhenArgumentMatchesName = false
+includeInlayEnumMemberValueHints = true
+
 [language-server.tombi]
 command = "tombi"
 args = ["lsp"]
