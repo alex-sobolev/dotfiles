@@ -160,16 +160,42 @@ configs update automatically.
 ## Per-machine overrides
 
 For settings that should differ between machines, keep the shared value here and
-load an **untracked** local file each app reads if present:
+let the machine layer its own changes on top.
 
-- **Ghostty** — append `config-file = ?local` to `ghostty/config`, then create an
-  untracked `~/.config/ghostty/local` (the `?` makes it optional; loaded last, so
-  it wins).
-- **Neovim** — see [nvim.md](nvim.md#per-machine-overrides).
-- **Zed** — no equivalent: `settings.json` has no include mechanism, so there's
-  nothing to point at a local file. Per-*project* overrides go in that project's
-  `.zed/settings.json`; for genuinely per-machine differences (e.g. font size on
-  a different display), edit `zed/settings.json` and just don't commit that hunk.
+The usual trick is an **untracked** local file the app loads if present — but
+that only works where the config format can express "load this, and carry on if
+it's missing". Two of these four can:
+
+- **Ghostty** — `config-file = ?local` (already in `ghostty/config`); just create
+  an untracked `~/.config/ghostty/local`. The `?` makes it optional, and it's
+  loaded last, so it wins.
+- **Neovim** — `pcall(require, "local")` at the end of `init.lua` loads an
+  untracked `nvim/lua/local.lua`; `pcall` swallows the error when it's absent.
+  See [nvim.md](nvim.md#per-machine-overrides).
+
+The other two have no include directive, so a gitignored `local` file would
+simply never be read:
+
+- **Helix** — nothing available; `config.toml` is plain TOML with no include.
+- **Zed** — `settings.json` can't include a file either, but it does have
+  **settings profiles**: named override bundles that live in the shared config
+  and are switched on per machine via `settings profile selector: toggle`.
+
+  ```json
+  "settings_profiles": {
+    "big-display": { "buffer_font_size": 18, "ui_font_size": 17 }
+  }
+  ```
+
+  Both machines keep identical tracked config and `git status` stays clean.
+  Zed describes profiles as *temporarily* applied, so confirm the toggle
+  survives a restart before relying on it for something permanent.
+
+For Helix, or for Zed if profiles don't stick, the fallback is an uncommitted
+local edit — change the value and skip that hunk with `git add -p`. It works,
+but the file stays permanently dirty on that machine and `git pull` will refuse
+to merge upstream changes to it until you stash, so prefer a profile where one
+will do.
 
 ## License
 
