@@ -3,7 +3,7 @@
 # Safe to re-run. Existing non-symlink configs are backed up to <name>.bak.
 #
 # Usage:
-#   ./install.sh                # link everything (nvim, helix, ghostty)
+#   ./install.sh                # link everything (nvim, helix, ghostty, zed)
 #   ./install.sh nvim           # link only nvim
 #   ./install.sh helix ghostty  # link a subset
 #
@@ -14,7 +14,7 @@ set -e
 REPO="$(cd "$(dirname "$0")" && pwd)"
 mkdir -p "$HOME/.config"
 
-APPS="${*:-nvim helix ghostty}"
+APPS="${*:-nvim helix ghostty zed}"
 
 for app in $APPS; do
   if [ ! -d "$REPO/$app" ]; then

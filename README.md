@@ -1,6 +1,6 @@
 # dotfiles
 
-My personal dotfiles — configs for Neovim, Helix, and Ghostty.
+My personal dotfiles — configs for Neovim, Helix, Zed, and Ghostty.
 
 This is a normal git repo: the config files live **right here** in the repo,
 and are symlinked into `~/.config/` so each app finds them.
@@ -10,11 +10,13 @@ and are symlinked into `~/.config/` so each app finds them.
 ├── nvim/        ->  ~/.config/nvim
 ├── helix/       ->  ~/.config/helix
 ├── ghostty/     ->  ~/.config/ghostty
+├── zed/         ->  ~/.config/zed
 ├── install.sh        (creates those symlinks; takes app names as args)
 ├── Brewfile          (aggregator: installs all of the below)
 ├── Brewfile.nvim     (nvim-only brew deps)
 ├── Brewfile.helix    (helix-only brew deps)
 ├── Brewfile.ghostty  (ghostty-only brew deps: the font)
+├── Brewfile.zed      (zed-only brew deps: the font)
 ├── .gitignore
 ├── README.md
 ├── nvim.md      (Neovim-specific docs: system deps, Mason packages, efm tools)
@@ -27,6 +29,7 @@ and are symlinked into `~/.config/` so each app finds them.
 | ----------- | ---------- | -------------------------------------------------- |
 | **Neovim**  | `nvim/`    | `lazy.nvim`; plugin versions pinned in `lazy-lock.json` — details in [nvim.md](nvim.md) |
 | **Helix**   | `helix/`   | `config.toml`, `languages.toml`, custom `themes/` — details in [helix.md](helix.md) |
+| **Zed**     | `zed/`     | `settings.json`, `keymap.json`; editor extensions auto-install via `auto_install_extensions` |
 | **Ghostty** | `ghostty/` | terminal config (`config`)                         |
 
 ## Setup on a new machine
@@ -45,14 +48,16 @@ names as arguments:
 brew bundle --file Brewfile.nvim  && ./install.sh nvim      # just Neovim
 brew bundle --file Brewfile.helix && ./install.sh helix     # just Helix
 brew bundle --file Brewfile.ghostty && ./install.sh ghostty # just Ghostty (font)
+brew bundle --file Brewfile.zed   && ./install.sh zed       # just Zed (font)
 ```
 
 ## System dependencies
 
 - **brew tools** — leaf CLI binaries the configs shell out to (`tree-sitter-cli`,
   `fzf`, `ripgrep`, `fd`, linters/formatters, …). They're split per tool:
-  `Brewfile.nvim` (most of them), `Brewfile.helix`, `Brewfile.ghostty` — the root
-  `Brewfile` just includes all three, so plain `brew bundle` still installs everything.
+  `Brewfile.nvim` (most of them), `Brewfile.helix`, `Brewfile.ghostty`,
+  `Brewfile.zed` — the root `Brewfile` just includes all four, so plain
+  `brew bundle` still installs everything.
 - **node / rust** — deliberately **not** in the Brewfile; install via your own
   version manager (`nvm`, `rustup`).
 
@@ -75,6 +80,20 @@ any other macOS app. Either way, the `ghostty/` config in this repo applies once
 The font it uses (`JetBrainsMono Nerd Font`) **is** in `Brewfile.ghostty`
 (`cask "font-jetbrains-mono-nerd-font"`), so `brew bundle` installs it for you.
 
+### Editor: Zed (install it yourself)
+
+Same deal as Ghostty — the app itself is left out of `brew bundle`:
+
+```sh
+brew install --cask zed            # via Homebrew
+```
+
+Or download it from <https://zed.dev/download>. The `zed/` config applies once
+`./install.sh` has symlinked it into `~/.config/zed`.
+
+Its font (`JetBrains Mono` — the plain one, *not* the Nerd Font variant Ghostty
+uses) is in `Brewfile.zed`.
+
 ## Neovim
 
 All nvim-specific docs live in **[nvim.md](nvim.md)**:
@@ -90,6 +109,38 @@ All Helix-specific docs live in **[helix.md](helix.md)**:
 
 - the language servers it expects on `PATH` and how to install them (`npm i -g …`),
 - the eslint setup (per-project eslint resolution + auto-fix on save).
+
+## Zed
+
+Two tracked files, both JSONC (comments and trailing commas are fine):
+
+- **`zed/settings.json`** — editor settings. JS/TS format-on-save runs Prettier
+  then applies ESLint fixes, driven by each project's own `eslint.config.js` /
+  `.prettierrc.json` (same arrangement as the nvim and Helix configs).
+- **`zed/keymap.json`** — keybindings (`shift-enter` in the terminal, `ctrl-w`
+  pane navigation in docks).
+
+### Extensions
+
+Zed extensions aren't brew packages — they're declared **in `settings.json`**
+under `auto_install_extensions`, and Zed installs anything missing on launch. So
+a fresh machine needs no extra step: clone, symlink, open Zed.
+
+To add one, install it from the extensions UI (`cmd-shift-x`), then add its id to
+that block so the next machine gets it too. Removing an entry does *not*
+uninstall the extension — do that in the UI.
+
+The active theme (`Kanagawa Wave - No Italics`) and icon theme
+(`Material Icon Theme`) both come from extensions listed there, so don't drop
+`kanagawa-themes` / `material-icon-theme` without changing `theme` / `icon_theme`
+to match.
+
+### What's not tracked
+
+`~/.config/zed/prompts/` (the prompt-library database) is gitignored — it's a
+per-machine binary store, not config. Everything else Zed writes at runtime
+(extensions, language servers, session db) lives outside the config dir in
+`~/Library/Application Support/Zed/`, so it never touches this repo.
 
 ## Daily use
 
@@ -115,6 +166,10 @@ load an **untracked** local file each app reads if present:
   untracked `~/.config/ghostty/local` (the `?` makes it optional; loaded last, so
   it wins).
 - **Neovim** — see [nvim.md](nvim.md#per-machine-overrides).
+- **Zed** — no equivalent: `settings.json` has no include mechanism, so there's
+  nothing to point at a local file. Per-*project* overrides go in that project's
+  `.zed/settings.json`; for genuinely per-machine differences (e.g. font size on
+  a different display), edit `zed/settings.json` and just don't commit that hunk.
 
 ## License
 

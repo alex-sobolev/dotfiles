@@ -1,0 +1,11 @@
+# Zed-only system dependencies.
+# Install with:  brew bundle --file ~/dev/dotfiles/Brewfile.zed
+
+# Zed (the editor itself) is intentionally NOT installed here — install it
+# yourself, via brew or a direct download. See README "Editor: Zed".
+
+# Zed's editor extensions are NOT brew packages: they're declared in
+# zed/settings.json under `auto_install_extensions`, and Zed installs them
+# itself on first launch.
+
+cask "font-jetbrains-mono"   # zed `buffer_font_family = JetBrains Mono`

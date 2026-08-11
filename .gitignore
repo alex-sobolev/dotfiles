@@ -21,3 +21,8 @@
 # per-machine override files (kept local, never committed)
 ghostty/local
 nvim/lua/local.lua
+
+# Zed runtime state written into its config dir (per-machine, not config)
+zed/prompts/
+zed/conversations/
+zed/.zed-editor-*

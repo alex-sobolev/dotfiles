@@ -1,0 +1,127 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  // Extensions Zed installs itself on a fresh machine, so cloning this repo is
+  // enough to get the full setup back. Zed installs anything missing on launch;
+  // removing an entry here does NOT uninstall it (do that in the extensions UI).
+  "auto_install_extensions": {
+    // Themes referenced by `theme` / `icon_theme` below — keep these.
+    "kanagawa-themes": true, // active: "Kanagawa Wave - No Italics"
+    "material-icon-theme": true, // active icon theme
+    "catppuccin": true,
+    "jetbrains-themes": true,
+    "tokyo-night": true,
+    // Language support
+    "html": true,
+    "lua": true,
+    "sql": true,
+    "toml": true,
+    "tombi": true, // TOML language server
+    "csv": true,
+    "make": true,
+    "dockerfile": true,
+    "terraform": true,
+    "oxc": true, // JS/TS linter
+    "git-firefly": true, // syntax for git commit/rebase/config files
+  },
+  "cli_default_open_behavior": "new_window",
+  "base_keymap": "VSCode",
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "context_servers": {},
+  "inlay_hints": {
+    "enabled": true,
+  },
+  "show_edit_predictions": false,
+  "agent_buffer_font_size": 16.0,
+  "agent_ui_font_size": 16.0,
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000,
+    },
+  },
+  "ui_font_family": ".ZedSans",
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_features": {
+    "calt": false, // Disable ligatures
+  },
+  "agent_servers": {},
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Material Icon Theme",
+    "dark": "Material Icon Theme",
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "ui_font_size": 16.0,
+  "buffer_font_size": 17.0,
+  "theme": "Kanagawa Wave - No Italics",
+  "project_panel": {
+    "dock": "left",
+    "auto_reveal_entries": true,
+  },
+  "helix_mode": false,
+  "vim_mode": false,
+  "vim": {
+    "toggle_relative_line_numbers": true,
+  },
+  "which_key": {
+    "enabled": true,
+    "delay_ms": 100,
+  },
+  // JS/TS: Prettier formats on save, then ESLint applies its own fixes
+  // (the `prettier/prettier` rule included). Both are driven by the
+  // project's own eslint.config.js / .prettierrc.json.
+  "format_on_save": "on",
+  "languages": {
+    "TypeScript": {
+      "code_actions_on_format": { "source.fixAll.eslint": true },
+    },
+    "TSX": {
+      "code_actions_on_format": { "source.fixAll.eslint": true },
+    },
+    "JavaScript": {
+      "code_actions_on_format": { "source.fixAll.eslint": true },
+    },
+  },
+  "lsp": {
+    "eslint": {
+      "settings": {
+        // ESLint 9+ uses flat config (eslint.config.js). State it explicitly so
+        // the server never falls back to looking for a legacy .eslintrc.
+        "useFlatConfig": true,
+        "problems": { "shortenToSingleLine": false },
+        "workingDirectory": { "mode": "auto" },
+      },
+    },
+  },
+  "theme_overrides": {
+    // Recolor inferred-type inlay hints so they read as "not real code"
+    // instead of matching explicit type annotations. Keyed by theme name.
+    "Kanagawa Wave - No Italics": {
+      "syntax": {
+        "hint": { "color": "#727169" },
+      },
+    },
+  },
+}
