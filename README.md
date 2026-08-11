@@ -183,9 +183,18 @@ simply never be read:
 
   ```json
   "settings_profiles": {
-    "big-display": { "buffer_font_size": 18, "ui_font_size": 17 }
+    "big-display": {
+      "buffer_font_size": 18,      // shared default: 17
+      "ui_font_size": 17,          // shared default: 16
+      "agent_ui_font_size": 17,    // shared default: 16
+      "agent_buffer_font_size": 17 // shared default: 16
+    }
   }
   ```
+
+  Set all four together — the shared config isn't uniform (editor text is 17,
+  UI and agent panels are 16), so bumping only `buffer_font_size` leaves the
+  interface out of step with the text.
 
   Both machines keep identical tracked config and `git status` stays clean.
   Zed describes profiles as *temporarily* applied, so confirm the toggle
