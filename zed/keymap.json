@@ -14,4 +14,13 @@
       "ctrl-w j": "workspace::ActivatePaneDown",
     },
   },
+  {
+    "context": "Editor",
+    "bindings": {
+      // Helix's move_parent_node_start/end. Zed only binds these in helix mode
+      // (keymaps/vim.json), which doesn't load while vim_mode is false.
+      "alt-b": "editor::MoveToStartOfLargerSyntaxNode",
+      "alt-e": "editor::MoveToEndOfLargerSyntaxNode",
+    },
+  },
 ]
