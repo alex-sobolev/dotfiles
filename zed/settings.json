@@ -121,6 +121,10 @@
     "Kanagawa Wave - No Italics": {
       "syntax": {
         "hint": { "color": "#727169" },
+        // The theme paints `.`, `,` and `;` at #4F4F66 — only 2.06:1 against
+        // the #1F1F28 background, so they nearly vanish. springViolet1 keeps
+        // them in-palette at 5.02:1. Brighter option: #9CABCA (7.08:1).
+        "punctuation.delimiter": { "color": "#938AA9" },
       },
     },
   },
