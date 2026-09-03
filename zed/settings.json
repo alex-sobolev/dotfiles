@@ -80,6 +80,11 @@
     "dock": "left",
     "auto_reveal_entries": true,
   },
+  // Single click opens a real tab, not a preview one the next click replaces.
+  // `space` still previews regardless — Zed bug, see this commit's message.
+  "preview_tabs": {
+    "enable_preview_from_project_panel": false,
+  },
   "helix_mode": false,
   "vim_mode": false,
   "vim": {
