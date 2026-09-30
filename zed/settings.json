@@ -119,6 +119,13 @@
         "workingDirectory": { "mode": "auto" },
       },
     },
+    "rust-analyzer": {
+      "initialization_options": {
+        // Run clippy instead of `cargo check` on save, so clippy lints get
+        // squiggles too. Which lints apply comes from each project's Cargo.toml.
+        "check": { "command": "clippy" },
+      },
+    },
   },
   "theme_overrides": {
     // Recolor inferred-type inlay hints so they read as "not real code"
